@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\clientController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get("/",[clientController::class,"accueil"]);
+Route::get("boutique",[clientController::class,"boutique"]);
+Route::get("panier",[clientController::class,"panier"]);
+Route::get("contact",[clientController::class,"contact"]);
+Route::get("propos",[clientController::class,"propos"]);
