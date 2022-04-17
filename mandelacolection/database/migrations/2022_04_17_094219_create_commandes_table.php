@@ -27,7 +27,7 @@ class CreateCommandesTable extends Migration
             $table->date('date_commande');
             $table->date("updated_at");
             $table->date("created_at");
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
         });
     }
 

@@ -27,7 +27,7 @@ class CreateArticlesTable extends Migration
             $table->integer('prix_article');
             $table->date("updated_at");
             $table->date("created_at");
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
         });
     }
 

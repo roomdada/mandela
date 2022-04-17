@@ -25,7 +25,7 @@ class CreatePhotosTable extends Migration
             $table->string('chemin');
             $table->date("updated_at");
             $table->date("created_at");
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
         });
     }
 

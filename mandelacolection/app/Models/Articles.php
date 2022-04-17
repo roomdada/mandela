@@ -13,6 +13,5 @@ class Articles extends Model
         'nom_article',
         'descrip_article',
         'prix_article',
-        'active'
     ];
 }

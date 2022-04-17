@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string("description");
             $table->date("updated_at");
             $table->date("created_at");
-            $table->boolean("active");
+            $table->boolean('active')->default(true);
         });
     }
 
