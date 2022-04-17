@@ -39,8 +39,8 @@ class CommandeController extends BaseController
             if($validator->fails()){
                 return $this->sendError($validator->errors());
             }
-            $articles = Commande::create($input);
-            return $this->sendResponse(new JsonResource($articles), 'Enregistre.');
+            $commande = Commande::create($input);
+            return $this->sendResponse(new JsonResource($commande), 'Enregistre.');
     }
 
     /**

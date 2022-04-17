@@ -16,7 +16,7 @@ class commande extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'article'=>$this->article,
+            'article_id'=>$this->article_id,
             'quantite'=>$this->quantite,
             'prix_total'=>$this->prix_total,
             'date_commande'=>$this->date_commande,

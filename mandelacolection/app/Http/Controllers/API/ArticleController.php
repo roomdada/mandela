@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
-use App\Models\Articles;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Resources\article as JsonResource;
 
@@ -17,8 +17,8 @@ class ArticleController extends BaseController
      */
     public function index()
     {
-        $articles = Articles::all();
-        return $this->sendResponse(JsonResource::collection($articles), 'Afficher.');
+        $article = Article::all();
+        return $this->sendResponse(JsonResource::collection($article), 'Afficher.');
     }
 
     /**
@@ -39,8 +39,8 @@ class ArticleController extends BaseController
             if($validator->fails()){
                 return $this->sendError($validator->errors());
             }
-            $articles = Articles::create($input);
-            return $this->sendResponse(new JsonResource($articles), 'Enregistre.');
+            $article = Article::create($input);
+            return $this->sendResponse(new JsonResource($article), 'Enregistre.');
     }
 
     /**
@@ -51,11 +51,11 @@ class ArticleController extends BaseController
      */
     public function show($id)
     {
-        $articles = Articles::find($id);
-            if (is_null($articles)) {
+        $article = Article::find($id);
+            if (is_null($article)) {
             return $this->sendError('aucun article.');
             }
-            return $this->sendResponse(new JsonResource($articles), 'Afficher par id.');
+            return $this->sendResponse(new JsonResource($article), 'Afficher par id.');
     }
 
     /**
@@ -65,7 +65,7 @@ class ArticleController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Articles $articles)
+    public function update(Request $request, Article $article)
     {
         $input = $request->all();
             $validator = Validator::make($input, [
@@ -77,12 +77,12 @@ class ArticleController extends BaseController
             if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());
             }
-            $articles->categorie_id = $input['name'];
-            $articles->nom_article = $input['detail'];
-            $articles->descrip_article = $input['descrip_article'];
-            $articles->prix_article = $input['prix_article'];
-            $articles->save();
-            return $this->sendResponse(new JsonResource($articles), 'Modifier.');
+            $article->categorie_id = $input['name'];
+            $article->nom_article = $input['detail'];
+            $article->descrip_article = $input['descrip_article'];
+            $article->prix_article = $input['prix_article'];
+            $article->save();
+            return $this->sendResponse(new JsonResource($article), 'Modifier.');
     }
 
     /**
@@ -91,9 +91,9 @@ class ArticleController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Articles $articles)
+    public function destroy(Article $article)
     {
-        $articles->delete();
-        return $this->sendResponse(new JsonResource($articles), 'Supprimer.');
+        $article->delete();
+        return $this->sendResponse(new JsonResource($article), 'Supprimer.');
     }
 }

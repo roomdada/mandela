@@ -13,8 +13,8 @@ class CategorieController extends BaseController
 
     public function index()
     {
-        $categories = Categorie::all();
-        return $this->sendResponse(JsonResource::collection($categories), 'Afficher.');
+        $categorie = Categorie::all();
+        return $this->sendResponse(JsonResource::collection($categorie), 'Afficher.');
     }
 
 
@@ -28,22 +28,22 @@ class CategorieController extends BaseController
         if($validator->fails()){
             return $this->sendError($validator->errors());
         }
-        $categories = Categorie::create($input);
-        return $this->sendResponse(new JsonResource($categories), 'Enregistre.');
+        $categorie = Categorie::create($input);
+        return $this->sendResponse(new JsonResource($categorie), 'Enregistre.');
     }
 
 
     public function show($id)
     {
-        $categories = Categorie::find($id);
-        if (is_null($categories)) {
+        $categorie = Categorie::find($id);
+        if (is_null($categorie)) {
             return $this->sendError('Post does not exist.');
         }
-        return $this->sendResponse(new JsonResource($categories), 'Afficher par id.');
+        return $this->sendResponse(new JsonResource($categorie), 'Afficher par id.');
     }
 
 
-    public function update(Request $request, Categorie $categories)
+    public function update(Request $request, Categorie $categorie)
     {
         $input = $request->all();
         $validator = Validator::make($input, [
@@ -53,17 +53,17 @@ class CategorieController extends BaseController
         if($validator->fails()){
             return $this->sendError($validator->errors(), "erreur");
         }
-        $categories->nom_categorie_ = $input['nom_categorie'];
-        $categories->description = $input['description'];
-        $categories->save();
+        $categorie->nom_categorie_ = $input['nom_categorie'];
+        $categorie->description = $input['description'];
+        $categorie->save();
 
-        return $this->sendResponse(new JsonResource($categories), 'Modifier.');
+        return $this->sendResponse(new JsonResource($categorie), 'Modifier.');
     }
 
-    public function destroy(Categorie $categories)
+    public function destroy(Categorie $categorie)
     {
-        $categories->delete();
-        return $this->sendResponse(new JsonResource($categories), 'Supprimer.');
+        $categorie->delete();
+        return $this->sendResponse(new JsonResource($categorie), 'Supprimer.');
 
     }
 }
