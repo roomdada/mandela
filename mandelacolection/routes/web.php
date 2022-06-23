@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/",[clientController::class,"accueil"]);
-Route::get("boutique",[clientController::class,"boutique"]);
-Route::get("panier",[clientController::class,"panier"]);
-Route::get("contact",[clientController::class,"contact"]);
-Route::get("propos",[clientController::class,"propos"]);
+Route::controller(clientController::class)->group(function(){
+    Route::get("/","accueil");
+    Route::get("boutique","boutique");
+    Route::get("panier", "panier");
+    Route::get("contact","contact");
+    Route::get("propos","propos");
+});
